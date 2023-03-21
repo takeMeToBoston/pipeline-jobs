@@ -24,9 +24,10 @@ pipeline {
         stage('DEPLOY-3') {
             steps {
                 script {
-                    def dockerCmd = 'docker run -d -p 80:80 anton83/react-app:ver1.0'
+                    def dockerComposeCmd = "docker-compose -f docker-compose.yml up --detach"
                     sshagent(['ec2-user-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@35.77.188.193 ${dockerCmd}"
+                        sh "scp docker-compose.yml ec2-user@35.77.188.193:/home/ec2-user"
+                        sh "ssh -o SrtictHostKeyChecking=no ec2-user@35.77.188.193 ${dockerComposeCmd}"
                 }
             }
         }    
