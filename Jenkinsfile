@@ -16,8 +16,7 @@ pipeline {
         stage('TEST-2') {
             steps {
                 echo 'Start stage-2'
-                echo 'Building ...'
-                sh "cat /etc/passwd"
+                echo 'Testing ...'
                 echo 'End of stage-2'
             }
         }
@@ -27,7 +26,7 @@ pipeline {
                     def dockerComposeCmd = "docker-compose -f docker-compose.yml up --detach"
                     sshagent(['ec2-user-key']) {
                         sh "scp docker-compose.yml ec2-user@35.77.188.193:/home/ec2-user"
-                        sh "ssh -o SrtictHostKeyChecking=no ec2-user@35.77.188.193 ${dockerComposeCmd}"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@35.77.188.193 ${dockerComposeCmd}"
                 }
             }
         }    
