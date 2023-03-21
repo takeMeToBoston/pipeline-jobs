@@ -23,11 +23,11 @@ pipeline {
         }
         stage('DEPLOY-3') {
             steps {
-                echo "Start stage-3 FOR owner ${env.OWNER_NAME}"
-                sh '''
-                    ls -la
-                '''
-                echo 'End of stage-3'
+                script {
+                    def dockerCmd = 'docker run -d -p 80:80 anton83/react-app:ver1.0'
+                    sshagent(['ec2-user-key']) {
+                        sh "ssh -o SrtictHostKeyChecking=no ec2-user@35.77.188.193 ${dockerCmd}"
+                }
             }
         }    
     }
