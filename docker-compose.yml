@@ -1,0 +1,12 @@
+vsersion: "3.8"
+services:
+  java-maven-app:
+    image: anton83/react-app:v1.0
+    ports:
+      - 80:80
+  postgres:
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD:my_pwd
