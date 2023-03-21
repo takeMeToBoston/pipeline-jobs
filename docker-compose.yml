@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  java-maven-app:
+  react-app:
     image: anton83/react-app:v1.0
     ports:
       - 80:80
