@@ -5,10 +5,18 @@ services:
     ports:
       - 80:80
   postgres:
-    image: postgres:13
+    container_name: postgres_demo
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: super_admin
+      POSTGRES_PASSWORD: SomeSecretPassword
+      PGDATA: /data/postgres
+    volumes:
+       - postgres-db:/data/postgres
     ports:
       - "5432:5432"
-    environment:
-      - POSTGRES_USER:postgres
-      - POSTGRES_PASSWORD:my_pwd
 
+
+volumes:
+  postgres-db:
+    driver: local
