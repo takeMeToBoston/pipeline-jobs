@@ -11,5 +11,4 @@ services:
     environment:
       - POSTGRES_USER:postgres
       - POSTGRES_PASSWORD:my_pwd
-    volumes:
-      - postgres:/data/postgres
+
