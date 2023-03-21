@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   react-app:
-    image: anton83/react-app:v1.0
+    image: anton83/react-app:ver1.0
     ports:
       - 80:80
   postgres:
